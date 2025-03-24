@@ -4,15 +4,12 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 
 import { getCartoons, getOneCartoonById } from "./resolvers/cartoon.resolver";
 
+import PersonnageSchema from "./schemas/personnage.schema";
+
 /** Définition des types de données */
 // un schéma est une collection de définitions de type (d'où "typeDefs")
 const typeDefs = `#graphql
-  type Personnage {
-    id: ID
-    name: String
-    role: String
-    short_description: String
-  }
+  type Personnage ${PersonnageSchema}
 
   # This "Cartoon" type defines the queryable fields for every cartoon in our data source.
   type Cartoon {
@@ -26,7 +23,8 @@ const typeDefs = `#graphql
     author: String
     ft_diffusion: String
     personnages: [Personnage]
-  }
+    }
+    
 
   # The "Query" type is special: it lists all of the available queries
   type Query {
