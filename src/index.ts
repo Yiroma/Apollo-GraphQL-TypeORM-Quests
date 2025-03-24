@@ -16,6 +16,10 @@ const typeDefs = `#graphql
   input PersonnageInput ${PersonnageInputSchema}
   input CartoonInput ${CartoonInputSchema}
 
+  type Mutation {
+    createCartoon(input: CartoonInput!): ID
+  }
+
   # The "Query" type is special: it lists all of the available queries
   type Query {
     getCartoons: [Cartoon]
