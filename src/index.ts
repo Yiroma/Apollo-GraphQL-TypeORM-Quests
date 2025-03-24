@@ -39,7 +39,7 @@ const typeDefs = `#graphql
   # The "Query" type is special: it lists all of the available queries
   type Query {
     getCartoons: [Cartoon]
-    getOneCartoonById(id: ID): Cartoon
+    getOneCartoonById(id: ID!): Cartoon
   }
 `;
 
