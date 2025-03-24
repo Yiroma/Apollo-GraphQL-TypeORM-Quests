@@ -4,15 +4,17 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 
 import { getCartoons, getOneCartoonById } from "./resolvers/cartoon.resolver";
 
-import PersonnageSchema from "./schemas/personnage.schema";
-import CartoonSchema from "./schemas/cartoon.schema";
+import { PersonnageSchema, PersonnageInputSchema } from "./schemas/personnage.schema";
+import { CartoonSchema, CartoonInputSchema } from "./schemas/cartoon.schema";
 
 /** Définition des types de données */
 // un schéma est une collection de définitions de type (d'où "typeDefs")
 const typeDefs = `#graphql
-type Cartoon ${CartoonSchema}
+  type Cartoon ${CartoonSchema}
+  type Personnage ${PersonnageSchema}
 
-type Personnage ${PersonnageSchema}
+  input PersonnageInput ${PersonnageInputSchema}
+  input CartoonInput ${CartoonInputSchema}
 
   # The "Query" type is special: it lists all of the available queries
   type Query {

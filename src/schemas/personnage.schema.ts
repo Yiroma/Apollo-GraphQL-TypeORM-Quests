@@ -7,4 +7,12 @@ const PersonnageSchema = `
   }
 `;
 
-export default PersonnageSchema;
+const PersonnageInputSchema = `
+  input PersonnageInput {
+    name: String
+    role: String
+    short_description: String
+  }
+`;
+
+export { PersonnageSchema, PersonnageInputSchema };
