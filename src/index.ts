@@ -2,6 +2,8 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 
+import getOneCartoonById from "./resolvers/cartoon.resolver";
+
 /** Création des données */
 const cartoons = [
   {
@@ -46,6 +48,7 @@ const typeDefs = `#graphql
 const resolvers = {
   Query: {
     getCartoons: () => cartoons,
+    getOneCartoonById,
   },
 };
 
