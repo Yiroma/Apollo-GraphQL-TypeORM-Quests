@@ -2,38 +2,30 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 
-import getOneCartoonById from "./resolvers/cartoon.resolver";
-
-/** Création des données */
-const cartoons = [
-  {
-    id: 1,
-    name: "Les Mystérieuses Cités d'Or",
-    description:
-      "Esteban, un jeune garçon orphelin, part à la recherche des légendaires Cités d'Or en Amérique du Sud accompagné de Zia et Tao.",
-  },
-  {
-    id: 2,
-    name: "Ulysse 31",
-    description:
-      "Ulysse se perd dans l'espace avec son équipage et cherche à rentrer sur Terre tout en affrontant les dieux de l'Olympe.",
-  },
-  {
-    id: 3,
-    name: "Dragon Ball SUPER COOL",
-    description:
-      "Son Goku, un jeune garçon doté d'une force incroyable, part à la recherche des Dragon Balls, des boules de cristal magiques.",
-  },
-];
+import { getCartoons, getOneCartoonById } from "./resolvers/cartoon.resolver";
 
 /** Définition des types de données */
 // un schéma est une collection de définitions de type (d'où "typeDefs")
 const typeDefs = `#graphql
+  type Personnage {
+    id: ID
+    name: String
+    role: String
+    short_description: String
+  }
+
   # This "Cartoon" type defines the queryable fields for every cartoon in our data source.
   type Cartoon {
     id: ID
     name: String
     description: String
+    nb_of_episodes: Int
+    nb_of_seasons: Int
+    genres: [String]
+    realisator: String
+    author: String
+    ft_diffusion: String
+    personnages: [Personnage]
   }
 
   # The "Query" type is special: it lists all of the available queries
@@ -48,7 +40,7 @@ const typeDefs = `#graphql
 // Ce résolveur récupère les livres du tableau « cartoons » ci-dessus.
 const resolvers = {
   Query: {
-    getCartoons: () => cartoons,
+    getCartoons,
     getOneCartoonById,
   },
 };
