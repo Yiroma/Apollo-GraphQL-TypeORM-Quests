@@ -2,6 +2,22 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 
+/** Définition des types de données */
+// un schéma est une collection de définitions de type (d'où "typeDefs")
+const typeDefs = `#graphql
+  # This "Cartoon" type defines the queryable fields for every cartoon in our data source.
+  type Cartoon {
+    id: ID
+    name: String
+    description: String
+  }
+
+  # The "Query" type is special: it lists all of the available queries
+  type Query {
+    getCartoons: [Cartoon]
+  }
+`;
+
 /** Création du serveur */
 const server = new ApolloServer({
   typeDefs,
