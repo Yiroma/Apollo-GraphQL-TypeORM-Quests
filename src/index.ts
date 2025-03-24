@@ -18,6 +18,15 @@ const typeDefs = `#graphql
   }
 `;
 
+/** Création des résolvers */
+// Les résolvers sont des fonctions qui permettent de récupérer les données
+// Ce résolveur récupère les livres du tableau « cartoons » ci-dessus.
+const resolvers = {
+  Query: {
+    getCartoons: () => cartoons,
+  },
+};
+
 /** Création du serveur */
 const server = new ApolloServer({
   typeDefs,
