@@ -34,4 +34,13 @@ const createCartoon = (_: unknown, args: { inputCartoon: Cartoon }): number => {
   return id;
 };
 
-export { getCartoons, getOneCartoonById, createCartoon };
+const deleteCartoon = (_: unknown, args: { id: number }): boolean => {
+  const index = cartoons.findIndex((cartoon) => cartoon.id === args.id);
+  if (index !== -1) {
+    cartoons.splice(index, 1);
+    return true;
+  }
+  return false;
+};
+
+export { getCartoons, getOneCartoonById, createCartoon, deleteCartoon };
