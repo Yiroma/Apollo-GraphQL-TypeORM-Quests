@@ -2,7 +2,7 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 
-import { getCartoons, getOneCartoonById } from "./resolvers/cartoon.resolver";
+import { getCartoons, getOneCartoonById, createCartoon } from "./resolvers/cartoon.resolver";
 
 import { PersonnageSchema, PersonnageInputSchema } from "./schemas/personnage.schema";
 import { CartoonSchema, CartoonInputSchema } from "./schemas/cartoon.schema";
@@ -17,7 +17,7 @@ const typeDefs = `#graphql
   input CartoonInput ${CartoonInputSchema}
 
   type Mutation {
-    createCartoon(input: CartoonInput!): ID
+    createCartoon(inputCartoon: CartoonInput): ID
   }
 
   # The "Query" type is special: it lists all of the available queries
@@ -34,6 +34,9 @@ const resolvers = {
   Query: {
     getCartoons,
     getOneCartoonById,
+  },
+  Mutation: {
+    createCartoon,
   },
 };
 
